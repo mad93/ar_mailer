@@ -460,7 +460,7 @@ class ActionMailer::ARSendmail
         rescue => e
           email.last_send_attempt = Time.now.to_i
           email.save rescue nil
-          log "error sending email %d: %p(%s):\n\t%s" %
+          log "!Error sending email %d: %p(%s):\n\t%s" %
                 [email.id, e.message, e.class, e.backtrace.join("\n\t")]
           session.reset
         end
