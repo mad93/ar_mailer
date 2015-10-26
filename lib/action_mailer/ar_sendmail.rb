@@ -457,6 +457,9 @@ class ActionMailer::ARSendmail
           log "error sending email %d: %p(%s):\n\t%s" %
                 [email.id, e.message, e.class, e.backtrace.join("\n\t")]
           session.reset
+        rescue => e
+          log "error sending email %d: %p(%s):\n\t%s" %
+                [email.id, e.message, e.class, e.backtrace.join("\n\t")]
         end
       end
     end
