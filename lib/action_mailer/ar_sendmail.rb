@@ -475,8 +475,11 @@ class ActionMailer::ARSendmail
       log "authentication error, retrying: #{e.message}"
     end
     sleep delay
-  rescue Net::SMTPServerBusy, SystemCallError, OpenSSL::SSL::SSLError
+  rescue Net::SMTPServerBusy, SystemCallError, OpenSSL::SSL::SSLError => e
     # ignore SMTPServerBusy/EPIPE/ECONNRESET from Net::SMTP.start's ensure
+    log "Error: " + e.message
+  rescue => e
+    log "Error: " + e.message
   end
 
   ##
